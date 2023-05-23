@@ -1,0 +1,910 @@
+INSATLLATION STEPS:
+1)Java Project:
+file---new--java projects--next--create java project [project name: salenium and 
+JRE --javaSE1.8--click on finish.
+
+2)create 2 folder in java project:
+select project --right click--new--folder--folder name: jar and Drivers.
+
+3) Download Automation Tool(SElenium)
+   1.click on Download
+   2.click on latest stable version 4.8.3
+   3.it download salenium jar file.
+4)Download Browser
+   1.WWW.Selenium.dev---Download click on
+   2.platform supported by Selenium--browser
+   3. Go to crome --click on dacumentation
+   4. click on latest satble release
+   5. click on cromedriver_win32.zip
+
+5) Add Selenium tools and Browser in project:
+   1.go to download and paste the selenium server 4.8.3jar folder (into the eclipse)
+   2.select jar file --right click --built path---add to built path
+   3.it automatically crate one folder in project called reference libraries
+   4.select crome driver zip file--right click---extract file
+  5. open cromedriver_win32---copy cromedriver(exefile)--paste on driver
+
+   SectionNotCreatedException ...go to google and help and check version 
+                                   and crome driver.exe  are need to both version are  same i.e get this exception 
+                                  i.e.delete crome driver.exe file and again download this file again 
+                        (when browers is updated then give this exception)
+
+In selenium :
+.(dots)means current project .
+/ (slash)means immediated child.
+
+selenium architecture:
+1.searchcontext is an interface .there are two method:
+ 1)findElement()-- we find SINGLE ELEMENT--return type---webElement
+
+ 2)findElements()--we use to find multiple element---return type---list<webElement>
+
+2.takeScreenshot : we can take sreenshot in one element or full webpage
+  method: takescreenshotas() .....only one method is there
+
+3.javascript : use scrolling And popoff:
+           method:  1)scrollOn()   2)scrollby()
+
+4.web driver:
+       method:
+           1)get(): it is use to pass the url .
+                    two type url:     1)mainUrl--only login page
+                             2)subUrl--after clicking
+
+        2)gettitle( ) : used to give the title on web page.
+
+        3)getcurrentUrl() : used to get page url in home page
+
+        4)getpagesource():
+.
+        5)close():It is used to close browser. it will closed only one window. 
+                                               i.e. parent window is closed .
+
+        6)quite() : It will close all windows .
+
+        7)getwindowhandle() : It is used to provide the window id (only one window).
+                                                   It is gives the id in parent window
+
+        8)getwindowhandles() : (multiple window) gives multiple id's .
+                              
+        9)navigate(): It is going to provide the direction  of the  browser .
+              ==> In this having 3 method:
+                      I.back() 
+                      II.forward() 
+                      III.refresh() 
+                      IV.to(String url) - get subURL
+
+        10)manage() :
+            a]manage windows related operation:
+                   1.maximize()
+                    2.minimize
+                     3.fullscreen()
+                     4.getsize()----return type is Dimension
+                      5.setsize()-----return type is Dimension .create a variable 
+                                                   after that pass the value in dimetion.and 
+                                                    and variable passed in method setsize.
+                       6.getPosition---return type is point
+                        7setPosition----return type is point creat a variale and pass
+                                                         the value and before luanching the pass
+                                                        the value and  then called .
+
+            b] manage timeout related:
+            c]manage the cookies releted :
+  
+
+        11)Switch to (): It is used to control the driver control.
+                                   with the help of id's .
+ 
+        [1] TWO DIFFRERENCE BETWEEN CLOSED AND QUITE
+
+               1.It will just closed  the window(closed).It is just close present window.
+                2.In project always use quite. it is used to closed all windows.
+      
+          *Oods (object oriented 
+
+
+                   1] If we are performing action on the targeted element.
+                      we are going to call only Web Elments their are 14 method.
+
+             ******Locator ********
+                   locator nothing but the selector.locators having  8 type:
+                     1.id(find single element)
+                     2.name(find single element)
+                     3.class
+                     4.tagname
+                      5.linktext
+                      6.partial linktext
+                      7.css : In locator css is the expression.
+
+      Syntax:   tagname[attribute name='attribute value']
+
+      when we go for css locator:  thair are not present the class ,
+     id ,tagname ,linked then we go for css expression.
+
+*   id and name is the best locator to find element.
+*   class and tagname is the used to find elments.(duplicate)
+
+*****advantage of css******
+1.vary faster than xpath
+
+ ****drawback(when you go for css is  having class, name ,tagname,id)
+
+1.you can't perform backword travacy.
+2.when your targeted element is having duplicates.it is can't be resolve
+ by using css
+3. targeted is having only the text that time css is not supported.
+
+====================================================================================
+
+In css some key point:
+     1).(dot) : current project 
+     2)/(slash):immediated
+      3)//(doble slash);any child
+      4)[]:index value start from 1.
+
+
+
+8.xpath: xml markup lauguege 
+        when :is targeted element  having only text
+          when is targeted element having duplicate
+          when is not having id,name and linked.
+
+two type:
+1.absolute xpath:from the root of the dacument.
+                  lerthy. 
+                  it is denoted by /
+
+
+Drawback : it is very time comsumer.
+
+   ****Syntax:
+
+<html>
+   <head>
+       <body>
+            <div>
+               <input type="text" value = A>
+
+               <input type="text" value =B >
+           </div>
+            <div>
+                <input type="text" value = C>
+
+                <input type="text" value =D >
+            </div> 
+        </body>
+    </head>
+</html>
+
+###########   Expresstion  (Xpath: Absolute)   ##############  (./)it is optional...it is bulit in.
+     1) (./)html/body/div[1]/input[1]------A         
+     2) html/body/div[1]/input[2]--------B
+     3)html/body/div[2]/input[1]--------C
+     4)html/body/div[2]/input[2]--------D
+     5)html/body/div[1]/input--------AB
+     6)html/body/div[2]/input--------CD
+     7)html/body/div/input[1]--------Ac
+     8)html/body/div/input[2]--------BD
+     9)html/body/div/input--------ABCD
+     10)html/body/div[1]/input[1]|html/body/div[2]/input[2]--------AD
+     11)html/body/div[1]/input[2]|html/body/div[2]/input[1]--------BC
+_______________________________________________________________________________________________________________________________________
+2.relative:any child of the dacument.
+           shorter than absolute.
+           it is used real time project(industry). 
+           it is denoted by //
+
+     type of Relative Xpath:
+     1) core relative
+     2)Xpath by Attribute
+     3) Xpath by Text
+     4)Xpath by contains
+     5)independent and dependent
+     6)xpath by group index
+     7)xpath by group axes
+   
+   ###########   Expresstion  (Xpath: Relative)   ##############  
+
+     1)  //div[1]/input[1]------A         
+     2)  //div[1]/input[2]--------B
+     3) //div[2]/input[1]--------C
+     4) //div[2]/input[2]--------D
+     5) //div[1]/input--------AB
+     6) //div[2]/input--------CD
+     7) //input[1]--------Ac
+     8) //input[2]--------BD
+     9)  //div/input--------ABCD
+     10) //div[1]/input[1]|//div[2]/input[2]--------AD
+     11) //div[1]/input[2]|//div[2]/input[1]--------BC
+
+ ** we have to find the how many link in application  ---in ctrl f and --//a
+  how to find the find first ---link----(//a)[1]
+  how to find the find second---link----(//a)[2]
+  how to find the find last ---link----(//a)[last()]
+  how to find the even and odd link----(//a)[position() mod 2=0]-----give even
+                                   ----(//a)[position() mod 2=1]-----give odd
+==========================================================================================
+_______________________________________________________________________________________________________
+ type of Relative Xpath:
+     1) core relative
+    ** 2)Xpath by Attribute
+     **3) Xpath by Text
+     *4)Xpath by contains
+     *5)independent and dependent
+     *6)xpath by group index
+     7)xpath by group axes
+
+1]core relative:
+Expression :compare to absolute it is shortcut.
+   1st way:  we have to go backwart direction until we will get 1of1.
+    2way way: write first absolute xpath and then add the tag from the backward direction.      
+
+      *drawback
+1.it is having the index value . in this structure any element is added and
+          any element remove to the structure that xpath change
+=============================================================================
+
+
+2]Xpath by attribute:
+Expression://tagname[@attribute name='attribute value']
+
+  example://img[@alt='Grocery']
+***Drawbacks :
+1.if your targerted having only the text .xpath by attribute is not going to get 1of 1
+2.when your targeted element having duplicate value
+3.
+==============================================================================
+3]Xpath by text:
+Expression://tagname[text()='text value']
+     example://div[text()='Travel']   
+
+Condition:
+  1. we have to passed the complete text value 
+  2.case sensative
+  3.it support both normal text and linked text .
+    
+
+drawback:
+1.you can't passed the partial text value
+2.if your text  value is having partial dynamic(changeble) value
+    then it is not going to support.
+if your targeted text having any space it is having non brokeble spaces.
+========================================================================================
+
+*4]Xpath by contains:
+Expression:
+
+i)Xpath by contains attribute : 
+    //tagname[contains(@attribute name,'partial attribute value')]
+  example : nokri.com
+    //input[contains(@placeholder,'enter the usernmae and password')]
+
+  ****  Advantage:*****
+    it is going to work is complate text and partial text also.
+
+ii)xpath by contains text :
+      //tagname[contains(text(),'partial text value')]
+ex: //nobr[contains(text()
+
+Drawback:
+     if your targeted element is having completely dyanamic 
+       that time it is not going to suppport
+     
+========================================================
+5]independent and dependent xpath:
+    it is not having any syntax.
+steps:
+    1.identify which is fixed and which is dynamic
+    2.write xpath for fixed element.
+    *3.update the xpath by backward traversing to find common parent 
+   between dynamic elment as well as fixed element
+    4.update xpath by writting xpath for dynamic element
+   
+example:
+steps:
+1)//td[text(),'Buddhist train']           -----to find first fixed element
+2)//td[text(),'Buddhist train']/..            --------then perform backward traversing
+3)//td[text(),'Buddhist train']/..//td[@data title='helpline']   ----then perform backward as well as FE and DE
+
+
+1)//td[text(),'Buddhist train']           
+2)//td[text(),'Buddhist train']/..            
+3)//td[text(),'Buddhist train']/..//td[@data title='mail']  
+
+ex1]    //div[text()='realme C33 2023 (Night Sea, 64 GB)']/../..//div[@class='_30jeq3 _1_WHN1'] 
+ex2]    ////div[text()='realme 9 (Stargaze White, 128 GB)'][1]/../..//div[@class='_30jeq3 _1_WHN1'][1]
+
+
+ **** how to find backward traversing:   /..
+
+
+drawback:
+1.
+
+
+==================================================
+7]xpath by group axes
+steps;
+       1.child
+       2.parent
+        3'
+
+
+
+
+1.click()
+
+
+when where your targeted element is not supported get 
+*element not intracteble exception.------change expression/change source code
+
+4.get Attribute():
+use :this method is going to pass attribute name  that attibute value it is
+going to give 
+
+attribute name give attribute  value.
+
+when get null:
+when td is not holding any value thet time to given to return empty or null
+    
+is empty ----true---td is empty
+          ----false-----td is not \
+
+
+
+=======================================================================================================================================================
+*****firefox browser download*****
+
+
+go to selenium.dev
+go to platformed supported..
+---go to firefox browser----
+   click on dacumentation.
+click on  0.30.1  
+scroll go to asset 
+click ecodriver 64.zip file --
+download the zip file ----
+go to file and ---go to download ---extract the file ---click that file copy and paste 
+in selenium 
+
+===============================================================================================================================================
+****in web elemente  in this having a two method :
+      get height(),getwidth()
+     It is used to get size of single element .
+
+      in this method set method is not here.
+****gettagname
+***if we  want to use submit method instance of clinking action.
+         1. two contion is:compalsory td button as a tagname
+                 <button type="submit">
+           2.compalsory giving a form
+
+and tE should have inside the form tagrgeted
+ element and submit type is present inside the form tagname
+
+
+*****isEnable:
+   TE is disable---false----we can't perform action on this.
+  if Te is disable in code we get the word called disabled.
+
+**TE is enable ---true----is having tagname accept this  tagname (input and button)
+---defaultly it will give true. 
+**TE is  selected having two condition
+
+**********SYNCHRONIZATION***********
+types:
+diff.between :
+1.implicite it is applicable for find element and findelements.
+************maven repeository****
+in maven all tools it is present
+_____________________________________________________________________________________________________________
+
+
+Take Screenshot
+
+steps:
+1.create a folder 
+2.create object of file
+3absolute path for folder
+4.move screenshot from temp location to destination location:
+first create a folder and give a name and create one object
+5.refresh the project: 
+
+
+*how to create a folder automatically
+step:you have to download the jar file which folder (io jar file)
+1.FileUtils.copyFile(tempfile, destfile);  
+//going to create a folder automatically
+
+If we have to check the screenshot:
+go to images folder right click .
+go to properties file
+go to location i.e. we have to get the sreenshot path
+
+___________________________________________________________________
+                  ***single Element ScreenShot***********
+webelement have 15 method bcoz their have one extra method called 
+takesScreenshotas()
+
+********going to create a folder automatically
+    *FileUtils.copyFile(tempfile, destfile); 
+*_________________________________________________________________________________________
+*****Select class**************
+to handle the dropdown we are go for the select class.
+it is concreate class.
+it is use to handle single list and multi list
+two type of dropdown:
+1.single list
+2.multi list
+
+** in select class there are so many method;
+in this 6 method is most important.
+1.if its having select tagname then only we going for select class.
+2. inside select class another tag called option tag
+
+steps:create the select class:
+1.we have to create object of the select
+   select s=new select();
+2.we are going to pass argument target input as
+3.with the reference variable you can called the non static method.
+
+**in this 6 non static method:
+1.isMultiple():it is going to check for it is single list or multilist dropdown
+                   if it is single we are get return type "false" and it is multilist we are get to  return " true".
+
+2.getOption():if we want to get all the data it is return type is id's(list type).
+                 if we are going to get single data
+       Syntax:For Each(datatype refVariable:collection)
+         
+ List<WebElement> allmonth = s.getOptions();
+	****       for(WebElement ele:allmonth) {
+	    	   System.out.println(ele);
+	       }
+          ---->it is going to get all data id each month
+
+                 **** List<WebElement> allmonth = s.getOptions();
+	       for(WebElement ele:allmonth) {
+	    	   System.out.println(ele.getText());
+	       } 
+                  ---->it is going to get all month text.
+
+3.  selectByVIsibleText(): it is going to pass which text we are visible that text is going to pass. we are going to get that text.
+                                       if we want all the text we are going to pass create a varible  and called it.
+
+4.SelectByIndex():
+          index value going to start from 0.
+         ex :s.selectByIndex(11);
+            ---->it is going to give index value as 11 .we are going to get  month is "dec".
+
+5.SelectByValue():it is going to select the attribute by value we are going to get element
+               ex:    s.selectByValue("Argentina");
+            ---->it is going to give index value as is give me month is Argentina.
+
+6.getFirstSelectedOption():
+it is used in only multilist dropdown.if we give single list value it is going to give a default value.
+
+____________________________________________________________________________________________________________________________
+
+
+
+
+====================================================================================================================================
+*****ACTION CLASS*********
+   With the help of action class we have to do action :
+   **in action  class 21 method in there.
+   
+steps:(mouse releted action)
+1.we have to create the object of actions
+   Action a=new Action();
+2. in action constructor going to pass argument webdriver reference.
+   Action a =new Action(driver);
+3.with the reference variable call non static method
+     a.click()
+4.call a perform().
+
+  **********Action class method**************
+      1.movetoElement(webElement target)
+      2.contextclick(WebElement target ) or right click  (used to right click)
+      3.contextClick();
+      4.doubleClick( WebElement target);
+     5.doubleClick();
+     6.click();
+     7.click(WebElement terget);
+    8.click&hold();
+   9.click &hold(Webelement target)
+   10.drag&drop()
+   11.release()
+   12.relaese(webElment)
+  13.MoveToElement(WebElment,intX offset,int Y offset)
+  14.moveByOffset();this method is 
+  15.sendKeys(char sequence)
+  18.perform():if we are not calling a performd method it is not going to do any action .
+                    it is used to performed the action on web browser.
+   19.KeyUp()
+   20.keyDown()
+  21.drag&dropby(): if are going to performed this method not give any action
+
+
+we are giving exception
+      here we are switch to concept
+***SwitchTo:
+*use of send keys in Action class:
+
+          HANDLING FRAMES:
+****** embeded webpage : one web page inside other web page .
+                                                
+
+    ***********How to handle the frame**********
+  1.   we have check target element present inside the frame or not
+how:goto td-- right click--- get two componend : reload and view frame
+(when we agr TE is present inside the frame going to get this option)
+  *it's parent and ancitor is having <iframe> tag 
+
+2.we have to transfer the driver control by using switch to method.
+   there are mainy  three way:
+   i ) by index value :driver.switchto().frame(int index)---- it is  faster 
+   ii)by id or name:   driver.switchto().frame(id/name)---we have to search in iframe tag only 
+   iii)by targeted element:driver.switchto().frame(targeted element)----check getting one of one css 
+
+3.indentify the targeted element 
+
+go to download git--- download for win --click--64-win setup
+goto downl;oad autoit---and download
+=========================================================
+   ************   JAVASCRIPT EXECUTOR***********
+      If click() and sendKeys()is raturn the fails then we go for javascript.
+   when the disable element is not perform manully we can't perform in  automation.
+it is not doing manully then we can't perform using automation.if manully is not possible how is possible in automotion.
+In javascript then we go for javascript.
+In javascript we have going to write argument index has 0.
+
+         javasctript it is used to perfoermed the action opretion and srolling operation.
+         TWO METHOD present inside the javscript:
+  javascript Executer js =(jse) driver;
+
+       1.js.ExecuteScript(string,object)==return type is object==Synchronized 
+       2.js.ExecuteAsynchScript()==ansynchronized
+
+two object in window:
+1.window(default object)
+2.document
+
+  ***in scrolling there are two method:
+   1.ScrollBy()==Scrollby(int x
+  2.ScrollTo()        
+          x axes==vertical        
+          yaxes== horizontally
+              scrolling top to bottom  ===  +ve
+             scrolling bottom to top  ==  -ve
+            left to right==+ve
+            right to left==  -ve
+=======================================================================
+check==
+  in eclipse---go to help---click on eclipse market place----enter testng on find[     ]----enter
+            ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+********POPUP**********
+    popup is gui(graphical user interface) window which comes on the top of the another window .
+   differenet type of popup:
+   i]Javascript 
+ii]hidden division--this is only possible  only locator.
+iii]file upload--we can handle the popup using tools.
+iv]notification---to ask the permission of the user.
+v]authentication.
+
+***  how to handle the popup:(It try to click on allow or not)
+
+ 1] it is possible to  first right click. it is inspectable or not.if is not inspectable.
+ 2]we have to see any solution is their your automation tools.(selenium)
+ 3]we have any solution is their in programming langauge to avoid that popup.
+ 4]you have to see any solution in the 3rd  party tools to handle the popup.
+  5]try to avoid popup.
+ ( without giving response we want perform any action).
+
+ ***i] Javascript :  it is blocker popup.   
+
+  thair are three type popup:
+       1.alert :  it wiil having only "ok"button.
+        2.confirmation : it wiil having only" ok" and " cancel" button.
+        3.prompt : it wiil having 'textfield' ,' ok'and 'cancel' button. 
+	
+  ********  To avoid the popup:
+*** create the object of browser class.
+     chromeOptions opt=new chromeOptions();
+        opt.addArgument("--disable-notifications");   
+
+****file uploading:
+    how to upload the file :
+    autoit script: It is used to automate the standalone application.
+defult lacation :c:drive.
+   go to google --search autoit---download .
+   download--open --click--next --up to finish.
+
+    ***go to c :drive--program file(*86)--autoit--open .
+    *go to autoit--index--search--controlFocus---copy -- paste sceit---and --controlSetText---copy --
+    **paste scit---and---controlClick---copy -- paste sciIt .
+
+     steps: 
+________________________________________________________________________________________
+   i.ControlFocus ( "title", "text", controlID )
+   ii.ControlSetText ( "title", "text", controlID, "new text" [, flag = 0] )
+   iii.ControlClick ( "title", "text", controlID [, button = "left" [, clicks = 1 [, x [, y]]]] )
+_________________________________________________________________________________________
+   i.ControlFocus ( "Open", "", "Edit1" )
+   ii.ControlSetText ( "Open", "", "Edit1", "E:\Selenium notes\Software info.txt"  )
+   iii.ControlClick ( "Open", "", "Button1"  )
+   iv.Save the file as filename.au3(extention).
+   v.after that compile the file.--go to tools ---compile--click
+   vi.go to that location where have save the file &give same name file .exe file.
+   vii. go to properties file search location.
+******Runtime.getRuntime().exec("C:\\Users\\Admin\\Desktop\\Practice.exe");
+________________________________________________________________________________________________________________________
+  ****google***        
+ its ansistor it is having the iframe tag.we perform one window inside another window
+then we write a line SwitchTo().frame();
+------------------------------------------------------------------------------------------------------------------------------------
+              ***FindElements:*************
+**Accept group index we are go for Xpath by expression(and /or/not)
+
+<html>
+      <head></head>
+      <body>
+              <input type="text" value="A">
+              <input type="text" value="B">
+               <input type="submit" value="A">
+      </body>
+</html>
+
+//input[@type='sumbit']=======A button
+//input[@value='B']=======B
+//input[@type='text' and @value='B'];   ======
+//input[@type='text' and @value='A'];    ======A
+//input[@value='A']=======AABUTTON
+
+
+***Syntax: 
+             ex://input[@type='text' and @value='A'];
+
+***combination:
+           ***Syntax: 
+             ex://input[@type='text' and @value='A'];
+
+
+_________________________________________________________________________________
+    findElment                                                                      FindElements
+1.single elmenet                                                                  1. multiple elmenet
+2.return type  --<webElment>                                        2.retuen type --list<webElment>
+3                                                                                              3.auto  & defult auto suggestionis the best example .---search field
+____________________________________________________________________________________________
+*****Auto Suggestion****************
+Steps:
+go to google---search whenever you want--[selenium]
+----give one than more auto suggesttion.
+---- start closing the  all the tag until() we get all the auto suggestion
+---we get source code of auto Suggestion one below another
+
+Xpath in FindElments:
+//li[@class='sbct' and not(@id='YMxe') and not(@id='mitGyb')]
+
+example 1:
+//li====45 duplicate
+//li[@class='sbct']===12
+//li[@class='sbct' and not(@id='YMXe')]=====11
+//li[@class='sbct' and not(@id='YMXe') and not(@id='mitGyb')]===10
+//li[@class='sbct' and not(@id='YMXe') and (@id='mitGyb')]===1 of 1
+//li[@class='sbct' and (@id='YMXe') and not(@id='mitGyb')]===1 of 1
+
+Example 2:
+
+//li[@role='presentation']===12
+//li[@role='presentation' and @id='YMXe']===1 of 1
+//li[@role='presentation' and not(@id='YMXe') and not(@id='mitGyb')]===10
+
+Example 3: Defult Auto-suggetion:
+//li[@class='sbct']===12
+//li 
+//li[@class='sbct' and not(@id='YMXe')]=====11
+//li[@class='sbct' and not(@id='YMXe') and not(@id='mitGyb')]===1 of 10
+____________________________________________________________________________________________
+https://collegedunia.com/college/2868-mallamma-marimallappa-womens-arts-and-commerce-college-mysore
+Syntax:
+//li[@class='jsx-1920625610 position-relative mr-12 list-item-text nav-item']
+we have to create the store in variable.
+create the object ref.
+
+**if we are --1.press the control--(use keydown() method)--press
+                        2.clickon all feature
+                          3. release control--(use keyup() method)--release
+                //        a.keyDown(Keys.CONTROL);    //
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+**********MAVEN INASTALLATION**********
+Steps: in ecclips:
+1.Go to file --> new ----->Project------>select a Wizard(Maven Folder)----->select maven project---->
+click on next------>click on checkbox (create a simple Project)----->
+click on next------->enter group id and artifind id---- finish
+
+delete Maven: when error in maven project creation.
+go to c drive :C:\Users\Admin\.m2 delete this path.
+
+Group id :Maven
+artifiend id:Maven
+==============================================================================================================
+why are going to maven project:
+
+Advantage of maven project:
+in java project if selenium version is updated that time we have to change the version
+first we have to delete the current version and after that download the new version and paste in selenium project.
+
+*in maven we don't want to delete the jar we want to change only the version (not need to download here)
+this is a 
+
+
+how to add tools for maven project:
+1. go to pom.xml
+2.add tag called dependencies inside the project
+3.to add tools
+
+Maven reposistory(global repository) :it is based it is auotomatically we save all the tools
+     .m2 is called as local repository.  this is depenedency tag
+    
+HTML REPORT:
+      after the refresh the maven project go to test/output folfer we have to ---
+get emailable report ---right click ---open with web browser.
+
+   *with the hepl of testng we have to pass
+**testNG.xml
+
+SELECT THE CLASS we have execute : right click---getting  testNg---getting to 2 option---
+selectt convert in testng---finish
+
+  ****Complete maven project is control by pom.xml.
+
+  ****1.group excution
+        2.
+=====================================================================
+       *****  Pom concept(advance selenium)
+
+       ****  staleElementReferneceException.
+              driver.navigate().refresh().
+
+                                                          // Bcoz of that we are giving that exception . 
+             ...... Bcoz when we refresh ele address is going to change  i.e. we giving to get this exception .
+                to avoid that exception by using pom.
+
+ ** ref var.clear()  ----> It is giving to work.
+
+            advatage of pom :
+             1.staleElementRefernceException is avoid that exeption .
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+[18-5-23]:
+
+testng.xml
+ <parameter name="browser" value="Chrome" >
+<classes>
+<class name ="parallel.test1(package name.class name)" ></Class>
+<classes>
+ <parameter name="browser" value="firefox" >< /parameter>
+<classes>
+<class name ="parallel.test1(package name.class name)" ></Class>
+<classes>
+
+
+
+**cross browser testing ***
+means attime both the browser is launch.
+1.copy tag 
+2.copy paste change name
+3.chnage name of the browser.any one browser change the name.
+
+**we have lauch multiple browser to copy the code and paste .
+
+__________________________________________________________________________________________
+
+***annotation*****
+1.@test
+2.@parameter
+3.
+
+flow of annotation:
+@before suit ---@before test--@before class--@before method---@test--@after method ---@after clas--@after test----@after suit.
+   most use :method and class 
+
+@test:
+@before and after class it will be exute only ones.it is use open and close the browser.
+
+__________________________________________________________________________________________________________________________----
+***Assert****
+1.assert
+2.assertion
+3.checkbox
+
+1.assert:  It is possible without condtion (if else)
+
+**assert are two type :(it is condition)
+1.hard assert
+2.soft assert
+
+1.hard assert  : If in the application having *(mandantory)field .
+               It is used  in madantory filed .
+In hard assert we are going to used only static method.\
+
+--> static method 
+--->if condition is satisfy  control will be release to next line.
+ Static Methods.
+--->in this 4 method :
+   1.assertEqual
+2.assertTrue
+3.assrteFalse
+
+***Condition will be :
+1.checkbox:isSelected
+2.checkBox :isDisplayed.
+#.checkBox:isEnable.
+
+*soft assert :
+It Is Not used in madantory field.In Soft assert we are going to used only non-static method.
+
+-->non static method 
+--->if condition is satisfy.  control will not  be release to next line.
+
+non Static Methods.
+--->in this 4 method :
+   1.assertEqual
+2.assertTrue
+3.assrteFalse
+4.assertall---->don't forgotte assertall method it is compaulsory in soft ASSERT.
+_________________________________________________________________________________
+
+**************pom*******
+         *pom stand:page object model/object repository/element repository
+***advantages Of POM:
+1.avoid staleElmentRefernceException.
+2.reusability code 
+3redabiltyof code
+4 maintaince effort
+
+*    it is design pattern 
+     which gives solution for frequently occuring problem .
+
+steps:(Procedure):
+
+     1.create seperate class for all pages.and in suffix page.Login page ,homepage.we have to crete two class 1.login 2.homepage
+     ( along with that in suffix we have to call page)
+     2.pass all credentials inrespective java class.
+     3.we have to make the element as privent and call getter method.
+  * 4.@findBy()----to find elment 
+    why go bcoz avoid exception.
+        driver.fibndElement(By.id());
+        @findBy(id="idvalue);
+        Privent WebElement ele;
+   5.pagefactory.intElement(,)
+        to in intilize@Findby()
+    6.base class
+     7 action class.
+_________________________________________
+we have to crete the object of login page and homepage
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
